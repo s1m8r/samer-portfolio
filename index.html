@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://i.ibb.co/tWJ05N2/Polished-Studio-Portrait-of-a-Young-Man.png"
+    />
+    <title>Samer's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f4f6f8;
+        --panel-2: #eceff2;
+        --line: #dde3e9;
+        --ink: #12161c;
+        --ink-soft: #4a525c;
+        --ink-faint: #8892a0;
+        --mark: #1d63ed;
+        --mark-dim: #1547b0;
+        --mark-soft: #dbe6fb;
+        --ok: #3f8a5f;
+        --panel: #14181f;
+        --panel-line: #2a303a;
+        --panel-ink-soft: #aab2bd;
+        --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+        --body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+        --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--body);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+      }
+      ::selection {
+        background: var(--mark);
+        color: #fff;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--mark);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--mark);
+        width: 0%;
+        z-index: 100;
+        transition: width 0.1s linear;
+      }
+
+      .container {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 20px;
+        }
+      }
+
+      /* ---- registration mark, used before every section heading ---- */
+      .tick {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 15px;
+        height: 15px;
+        margin-inline-end: 12px;
+        color: var(--mark);
+        font-family: var(--mono);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1;
+        transform: translateY(-1px);
+      }
+
+      /* ---- side nav ---- */
+      .side-nav {
+        position: fixed;
+        top: 50%;
+        right: 30px;
+        transform: translateY(-50%);
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-end;
+      }
+      .side-nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-faint);
+      }
+      .side-nav a .label {
+        opacity: 0;
+        transform: translateX(6px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+        background: var(--ink);
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 2px;
+      }
+      .side-nav a:hover .label {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .side-nav a .dot {
+        width: 7px;
+        height: 7px;
+        border: 1.5px solid var(--ink-faint);
+        background: transparent;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .side-nav a.active .dot {
+        background: var(--mark);
+        border-color: var(--mark);
+      }
+      @media (max-width: 860px) {
+        .side-nav {
+          display: none;
+        }
+      }
+
+      /* ---- top bar ---- */
+      header.top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(244, 246, 248, 0.86);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .top-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+      }
+      @media (max-width: 480px) {
+        .top-inner {
+          padding: 14px 20px;
+        }
+        .brand-name {
+          font-size: 14px;
+        }
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        border: 1.5px dashed var(--mark);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        font-weight: 500;
+        color: var(--mark-dim);
+        overflow: hidden;
+      }
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .brand-name {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 15.5px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .top-cta {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid var(--ink);
+        border-radius: 3px;
+        color: var(--ink);
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+        white-space: nowrap;
+      }
+      .top-cta:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      /* ---- HERO ---- */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 130px 0 64px;
+      }
+      @media (max-width: 480px) {
+        .hero {
+          padding: 150px 0 56px;
+        }
+      }
+      .mark-box {
+        position: relative;
+        display: inline-block;
+        border: 1.5px dashed var(--mark);
+        padding: 18px 26px;
+      }
+      .corner {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border: 2px solid var(--ink);
+      }
+      .corner.tl {
+        top: -1.5px;
+        left: -1.5px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .corner.tr {
+        top: -1.5px;
+        right: -1.5px;
+        border-left: none;
+        border-bottom: none;
+      }
+      .corner.bl {
+        bottom: -1.5px;
+        left: -1.5px;
+        border-right: none;
+        border-top: none;
+      }
+      .corner.br {
+        bottom: -1.5px;
+        right: -1.5px;
+        border-left: none;
+        border-top: none;
+      }
+
+      h1.hero-name {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(34px, 8vw, 88px);
+        line-height: 1.03;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .hero-block {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        animation: up 0.8s ease forwards 0.22s;
+      }
+      .hero-tag {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        margin-top: 10px;
+        margin-inline-start: 4px;
+      }
+      .hero-tag .k {
+        color: var(--ink-soft);
+      }
+      .hero-tag .v {
+        color: var(--mark-dim);
+      }
+
+      .hero-role {
+        font-family: var(--body);
+        font-weight: 400;
+        font-size: clamp(17px, 2vw, 20px);
+        color: var(--ink-soft);
+        margin-top: 36px;
+        max-width: 46ch;
+        opacity: 0;
+        animation: up 0.8s ease forwards 0.38s;
+      }
+      .hero-actions {
+        margin-top: 34px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: up 0.8s ease forwards 0.52s;
+      }
+      .btn {
+        font-family: var(--body);
+        font-weight: 500;
+        font-size: 14.5px;
+        padding: 13px 22px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid transparent;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+      .btn-solid {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .btn-solid:hover {
+        transform: translateY(-2px);
+      }
+      .btn-line {
+        border-color: var(--line);
+        color: var(--ink);
+      }
+      .btn-line:hover {
+        border-color: var(--ink);
+        transform: translateY(-2px);
+      }
+
+      .hero-status {
+        margin-top: 56px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-soft);
+        opacity: 0;
+        animation: up 0.8s ease forwards 0.64s;
+      }
+      .hero-status .pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ok);
+        box-shadow: 0 0 0 3px rgba(63, 138, 95, 0.18);
+      }
+
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      section {
+        padding: 108px 0;
+        border-top: 1px solid var(--line);
+      }
+      h2.title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(28px, 4vw, 40px);
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+      }
+
+      /* ---- ABOUT ---- */
+      .about-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 48px;
+        align-items: start;
+        margin-top: 44px;
+      }
+      @media (min-width: 860px) {
+        .about-wrap {
+          grid-template-columns: 200px 1fr;
+        }
+      }
+      .id-plate {
+        width: 128px;
+        height: 128px;
+        border: 1.5px solid var(--ink);
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--ink);
+        position: relative;
+        flex-shrink: 0;
+      }
+      .id-plate img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .id-plate .glyph {
+        font-size: 40px;
+      }
+      @media (max-width: 480px) {
+        .id-plate {
+          width: 104px;
+          height: 104px;
+        }
+      }
+      .about-text p {
+        color: var(--ink-soft);
+        font-size: 16.5px;
+        max-width: 60ch;
+        margin-bottom: 16px;
+      }
+      .about-text strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .facts {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 32px;
+        max-width: 480px;
+        border-top: 1px solid var(--line);
+        padding-top: 24px;
+      }
+      @media (max-width: 420px) {
+        .facts {
+          grid-template-columns: 1fr;
+        }
+      }
+      .fact {
+        font-family: var(--mono);
+        font-size: 13px;
+      }
+      .fact .k {
+        color: var(--ink-faint);
+      }
+      .fact .v {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ---- SKILLS spec table ---- */
+      .spec {
+        margin-top: 44px;
+        border-top: 1px solid var(--line);
+      }
+      .spec-row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 24px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: baseline;
+      }
+      @media (max-width: 560px) {
+        .spec-row {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+      .spec-key {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--mark-dim);
+      }
+      .spec-values {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 10px;
+        font-family: var(--display);
+        font-size: 17px;
+        color: var(--ink);
+      }
+      .spec-values span:not(:last-child)::after {
+        content: ",";
+        color: var(--ink-faint);
+      }
+
+      /* ---- PROJECTS ---- */
+      .project-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 44px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .project-row:first-of-type {
+        padding-top: 4px;
+      }
+      .project-row:last-of-type {
+        border-bottom: none;
+      }
+      @media (min-width: 860px) {
+        .project-row {
+          grid-template-columns: 1fr 1fr;
+          gap: 52px;
+        }
+      }
+      .browser-frame {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+        transition: border-color 0.2s ease;
+      }
+      .project-row:hover .browser-frame {
+        border-color: var(--ink);
+      }
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 12px;
+        background: var(--panel-2);
+        border-bottom: 1px solid var(--line);
+      }
+      .browser-dots {
+        display: flex;
+        gap: 5px;
+      }
+      .browser-dots span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ink-faint);
+        opacity: 0.55;
+      }
+      .browser-url {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 3px 10px;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .browser-body {
+        aspect-ratio: 16/10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 30px;
+        color: var(--ink);
+        position: relative;
+      }
+      .bb-1 {
+        background: linear-gradient(
+          160deg,
+          var(--mark-soft) 0%,
+          var(--paper) 65%
+        );
+      }
+      .bb-2 {
+        background: linear-gradient(160deg, #e4e9ee 0%, var(--paper) 65%);
+      }
+      .bb-3 {
+        background: linear-gradient(160deg, #1c1f26 0%, #3a3f4c 65%);
+        color: #fff;
+      }
+
+      .project-index {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-faint);
+        margin-bottom: 8px;
+      }
+      .project-title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+      .project-desc {
+        color: var(--ink-soft);
+        font-size: 15px;
+        max-width: 46ch;
+        margin-bottom: 14px;
+      }
+      .demo-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 6px 10px;
+        margin-bottom: 16px;
+      }
+      .demo-note strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 4px 9px;
+        border-radius: 3px;
+        background: var(--panel-2);
+        color: var(--ink-soft);
+        border: 1px solid var(--line);
+      }
+      .project-link {
+        font-family: var(--body);
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--ink);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 1px;
+        transition:
+          color 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .project-link:hover {
+        color: var(--mark-dim);
+        border-color: var(--mark-dim);
+      }
+
+      /* ---- CONTACT ---- */
+      .contact-box {
+        margin-top: 40px;
+        background: var(--panel);
+        color: #fff;
+        border-radius: 8px;
+        padding: 60px 44px;
+        position: relative;
+      }
+      @media (max-width: 560px) {
+        .contact-box {
+          padding: 40px 24px;
+        }
+      }
+      .contact-box .corner {
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+      .contact-big {
+        font-family: var(--display);
+        font-weight: 500;
+        font-style: italic;
+        font-size: clamp(24px, 4vw, 38px);
+        line-height: 1.25;
+        max-width: 26ch;
+      }
+      .contact-email {
+        margin-top: 26px;
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1.5px solid var(--mark);
+        padding-bottom: 2px;
+      }
+      .contact-email:hover {
+        color: var(--mark);
+      }
+      .contact-links {
+        margin-top: 44px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 32px;
+        max-width: 420px;
+        border-top: 1px solid var(--panel-line);
+        padding-top: 24px;
+      }
+      @media (max-width: 480px) {
+        .contact-links {
+          grid-template-columns: 1fr;
+        }
+      }
+      .contact-links a {
+        display: block;
+        font-family: var(--mono);
+        font-size: 13px;
+        text-decoration: none;
+      }
+      .contact-links .k {
+        color: var(--panel-ink-soft);
+      }
+      .contact-links .v {
+        color: #fff;
+      }
+      .contact-links a:hover .v {
+        color: var(--mark);
+      }
+
+      footer {
+        padding: 32px 0;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" id="progress"></div>
+
+    <header class="top">
+      <div class="top-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark"
+            ><img
+              src="https://i.ibb.co/tWJ05N2/Polished-Studio-Portrait-of-a-Young-Man.png"
+              alt="Samer Al-Musawi"
+          /></span>
+          <span class="brand-name">Samer Al-Musawi</span>
+        </a>
+        <a href="#contact" class="top-cta">Say hello</a>
+      </div>
+    </header>
+
+    <nav class="side-nav" id="sideNav">
+      <a href="#about" data-target="about"
+        ><span class="label">about</span><span class="dot"></span
+      ></a>
+      <a href="#skills" data-target="skills"
+        ><span class="label">skills</span><span class="dot"></span
+      ></a>
+      <a href="#work" data-target="work"
+        ><span class="label">work</span><span class="dot"></span
+      ></a>
+      <a href="#contact" data-target="contact"
+        ><span class="label">contact</span><span class="dot"></span
+      ></a>
+    </nav>
+
+    <main id="top">
+      <section class="hero" style="border-top: none">
+        <div class="container">
+          <div class="hero-block">
+            <h1 class="hero-name">
+              <span class="mark-box">
+                <span class="corner tl"></span><span class="corner tr"></span
+                ><span class="corner bl"></span><span class="corner br"></span>
+                Samer Al-Musawi
+              </span>
+            </h1>
+            <p class="hero-tag">
+              <span class="k">--role:</span>
+              <span class="v">"front-end developer"</span>;
+            </p>
+          </div>
+
+          <p class="hero-role">
+            I build interfaces for the web — mostly in React and TypeScript,
+            always with an eye on how a layout actually holds up once it's real
+            and someone's clicking through it.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-solid">See my work</a>
+            <a href="#contact" class="btn btn-line">Get in touch</a>
+          </div>
+
+          <p class="hero-status">
+            <span class="pulse"></span>
+            Based in Baghdad — open to remote work
+          </p>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <h2 class="title reveal">
+            <span class="tick">+</span>A little about me
+          </h2>
+          <div class="about-wrap">
+            <div class="id-plate reveal">
+              <img
+                src="https://i.ibb.co/tWJ05N2/Polished-Studio-Portrait-of-a-Young-Man.png"
+                alt="Polished-Studio-Portrait-of-a-Young-Man"
+                border="0"
+              />
+            </div>
+            <div class="about-text reveal">
+              <p>
+                I'm <strong>Samer Al-Musawi</strong>, a front-end developer
+                based in Baghdad. I care about the layer between a design file
+                and something a person can actually click through — the spacing,
+                the state changes, the parts that are easy to skip.
+              </p>
+              <p>
+                Most of what I build runs on
+                <strong>React, TypeScript, and Tailwind CSS</strong>, with
+                TanStack handling data and routing. I'd rather ship something
+                small that's easy to change later than something large that
+                isn't.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <h2 class="title reveal">
+            <span class="tick">+</span>What I work with
+          </h2>
+          <div class="spec reveal">
+            <div class="spec-row">
+              <p class="spec-key">interface:</p>
+              <div class="spec-values">
+                <span>React.js</span><span>Vue.js</span><span>TypeScript</span
+                ><span>HTML &amp; CSS</span><span>Tailwind CSS</span
+                ><span>ShadCN UI</span>
+              </div>
+            </div>
+            <div class="spec-row">
+              <p class="spec-key">state &amp; data:</p>
+              <div class="spec-values">
+                <span>Zustand</span><span>TanStack Query</span
+                ><span>TanStack Router</span><span>TanStack Table</span
+                ><span>Axios</span><span>React Hook Form</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work">
+        <div class="container">
+          <h2 class="title reveal"><span class="tick">+</span>My projects</h2>
+
+          <div class="project-row reveal">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dots"
+                  ><span></span><span></span><span></span
+                ></span>
+                <span class="browser-url"
+                  >dashboard-samer-store.vercel.app</span
+                >
+              </div>
+              <div class="browser-body bb-1" style="padding: 0">
+                <img
+                  src="https://pngup.com/opYk/dds.jpg"
+                  alt="Dashboard Samer Store"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                  "
+                />
+              </div>
+            </div>
+            <div>
+              <p class="project-index">Project 01</p>
+              <h3 class="project-title">Dashboard Samer Store</h3>
+              <p class="project-desc">
+                An analytics dashboard with interactive charts, live stats, and
+                data visualizations for tracking business performance.
+              </p>
+              <p class="demo-note">
+                demo login — <strong>test@test.com</strong> /
+                <strong>123123</strong>
+              </p>
+              <div class="tags">
+                <span class="tag">React</span
+                ><span class="tag">TypeScript</span>
+              </div>
+              <a
+                href="https://dashboard-samer-store.vercel.app/"
+                target="_blank"
+                class="project-link"
+                >View project</a
+              >
+            </div>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dots"
+                  ><span></span><span></span><span></span
+                ></span>
+                <span class="browser-url">samerstore.vercel.app</span>
+              </div>
+              <div class="browser-body bb-2" style="padding: 0">
+                <img
+                  src="https://pngup.com/YRDe/store.jpg"
+                  alt="Samer Shop"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                  "
+                />
+              </div>
+            </div>
+            <div>
+              <p class="project-index">Project 02</p>
+              <h3 class="project-title">Samer Shop</h3>
+              <p class="project-desc">
+                A responsive e-commerce site with product browsing, cart
+                management, and a checkout flow that stays out of the way.
+              </p>
+              <div class="tags">
+                <span class="tag">React</span
+                ><span class="tag">TypeScript</span>
+              </div>
+              <a
+                href="https://samerstore.vercel.app/"
+                target="_blank"
+                class="project-link"
+                >View project</a
+              >
+            </div>
+          </div>
+
+          <div class="project-row reveal">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dots"
+                  ><span></span><span></span><span></span
+                ></span>
+                <span class="browser-url">samercinema.vercel.app</span>
+              </div>
+              <div class="browser-body bb-3" style="padding: 0">
+                <img
+                  src="https://pngup.com/15En/cin.jpg"
+                  alt="Samer Cinema"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                  "
+                />
+              </div>
+            </div>
+            <div>
+              <p class="project-index">Project 03</p>
+              <h3 class="project-title">Samer Cinema</h3>
+              <p class="project-desc">
+                A movie browsing app with search, detail pages, and trailers,
+                pulling live data from a public movies API.
+              </p>
+              <div class="tags">
+                <span class="tag">React</span
+                ><span class="tag">TypeScript</span>
+              </div>
+              <a
+                href="https://samercinema.vercel.app/"
+                target="_blank"
+                class="project-link"
+                >View project</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <h2 class="title reveal"><span class="tick">+</span>Contact</h2>
+          <div class="contact-box reveal">
+            <span class="corner tl"></span><span class="corner tr"></span
+            ><span class="corner bl"></span><span class="corner br"></span>
+            <p class="contact-big">
+              Working on something? I'd like to hear about it.
+            </p>
+            <a href="mailto:s1m8rsa@gmail.com" class="contact-email"
+              >s1m8rsa@gmail.com</a
+            >
+            <div class="contact-links">
+              <a href="https://github.com/s1m8r" target="_blank"
+                ><span class="k">github:</span> <span class="v">s1m8r</span></a
+              >
+              <a href="https://www.linkedin.com/in/s1m8r" target="_blank"
+                ><span class="k">linkedin:</span>
+                <span class="v">s1m8r</span></a
+              >
+              <a href="https://www.facebook.com/alsidsamr/" target="_blank"
+                ><span class="k">facebook:</span>
+                <span class="v">alsidsamr</span></a
+              >
+              <a href="https://wa.me/9647722759695" target="_blank"
+                ><span class="k">whatsapp:</span>
+                <span class="v">+964 772 275 9695</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <span>© 2026 Samer Al-Musawi</span>
+          <span>built with react &amp; tailwind</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // scroll progress bar
+      const progress = document.getElementById("progress");
+      function updateProgress() {
+        const h = document.documentElement;
+        const scrolled =
+          (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        progress.style.width = scrolled + "%";
+      }
+      document.addEventListener("scroll", updateProgress, { passive: true });
+      updateProgress();
+
+      // reveal on scroll
+      const revealEls = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      revealEls.forEach((el) => io.observe(el));
+
+      // side nav active state
+      const sections = ["about", "skills", "work", "contact"].map((id) =>
+        document.getElementById(id),
+      );
+      const navLinks = document.querySelectorAll(".side-nav a");
+      const navIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              navLinks.forEach((l) => l.classList.remove("active"));
+              const active = document.querySelector(
+                '.side-nav a[data-target="' + e.target.id + '"]',
+              );
+              if (active) active.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      sections.forEach((s) => {
+        if (s) navIO.observe(s);
+      });
+    </script>
+  </body>
+</html>
